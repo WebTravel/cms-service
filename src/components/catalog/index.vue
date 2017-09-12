@@ -5,7 +5,7 @@
       .sites__item.site
         .site__info
           .site__name {{site.name}}
-          a.site__answers.answer(href="#")
+          router-link.site__answers.answer(:to="{name:'detail', params: {id: site.id}}")
             span.answer__count(v-show="site.new_answers_count > 0") {{site.new_answers_count}}
             span.answer__name Ответы
         .site__management
@@ -39,7 +39,7 @@
   }
 </script>
 
-<style lang="sass"scoped>
+<style lang="sass" scoped>
   // color-list
   $red: #b80000
   $white: #ffffff
@@ -94,5 +94,7 @@
     &__name
       line-height: 1
       margin-left: auto
+      color: $red
+      text-decoration: none
 
 </style>

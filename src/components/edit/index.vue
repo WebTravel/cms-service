@@ -1,6 +1,7 @@
 <template lang="pug">
   .site
-    h1 {{ title }} {{site.name}}
+    h1 {{ title }} 
+      span {{site.name}}
     .site__quest
       .site__quest--title Вопросы
       .site__quest--list
@@ -31,7 +32,7 @@
         if (this.site.questions === undefined) {
           this.site.questions = []
         }
-        console.log(response)
+        // console.log(response)
       })
     },
     methods: {
@@ -41,7 +42,7 @@
         this.new_question = ''
         // Отправляем данные на сервер
         axios.patch('https://kokoc.prort.ru/api/sites/' + this.$route.params.id, this.site).then((response) => {
-          console.log(response)
+          // console.log(response)
         })
       }
     }
@@ -56,6 +57,8 @@
   .site
     h1
       font-weight: 300
+      span
+        font-weight: 700
     &__quest
       &--title
         font-weight: 700
