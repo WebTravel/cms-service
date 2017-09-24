@@ -1,6 +1,7 @@
 <template lang="pug">
   .sites
-    h1 {{ title }}
+    h1 Сайты
+    router-link(to="/site" class="sites__add") Добавить сайт
     .sites__list(v-for="site, idx in sites")
       .sites__item.site
         .site__info
@@ -21,19 +22,21 @@
     name: 'catalog',
     data () {
       return {
-        title: 'Сайты',
         sites: require('../../sites.json')
       }
     },
     mounted () {
       axios.get('https://kokoc.prort.ru/api/sites').then((response) => {
         this.sites = response.data
-        this.sites = this.sites.map(item => ({...item, new_answers_count: 25}))
+        // this.sites = this.sites.map(item => ({...item, new_answers_count: 25}))
       })
     },
     methods: {
       removeSite ({id}) {
         this.sites = this.sites.filter(site => site.id !== id)
+        axios.delete('https://kokoc.prort.ru/api/sites/' + id).then((response) => {
+
+        })
       }
     }
   }
@@ -48,6 +51,22 @@
     h1
       font-size: 30px
       font-weight: 300
+    &__add
+      background: $red
+      color: $white
+      border: none
+      text-transform: uppercase
+      padding: 7px 15px
+      font-weight: 700
+      margin-bottom: 30px
+      cursor: pointer
+      display: inline-block
+      text-align: center
+      text-decoration: none
+      font-size: 14px
+      &:active, &:focus
+        outline: none
+        border: none
     &__list
       margin-left: 30px
 

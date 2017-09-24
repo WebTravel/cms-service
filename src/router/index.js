@@ -20,7 +20,12 @@ export default new Router({
       component: Site
     },
     {
-      path: '/site/detail/:id',
+      path: '/site',
+      name: 'new_site',
+      component: Site
+    },
+    {
+      path: '/site/:id/detail',
       name: 'detail',
       component: Detail
     }
